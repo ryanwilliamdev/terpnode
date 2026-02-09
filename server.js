@@ -42,7 +42,7 @@ app.get('/', (request, response) => {
 })
 
 app.get('/api', (request, response) => {
-    response.json()
+    response.json(terpeneData)
 })
 
 app.listen(PORT, () => {
