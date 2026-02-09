@@ -3,45 +3,39 @@ const app = express()
 const PORT = 8000
 
 const terpeneData = {
-  topTerpenes: [
-    {
-      id: 1,
-      name: "Myrcene",
-      aroma: "Earthy, Musky, Cloves",
-      effects: ["Relaxing", "Sedating"],
+    'myrcene': {
+        id: 1,
+        'aroma': 'Earthy, Musky, Cloves',
+        'effects': ['Relaxing', 'Sedating'],
     },
-    {
-      id: 2,
-      name: "Limonene",
-      aroma: "Citrus, Lemon, Orange",
-      effects: ["Mood Elevation", "Stress Relief"],
+    'limonene': {
+        id: 2,
+        'aroma': 'Citrus, Lemon, Orange',
+        'effects': ['Mood Elevation', 'Stress Relief'],
     },
-    {
-      id: 3,
-      name: "Caryophyllene",
-      aroma: "Peppery, Spicy, Wood",
-      effects: ["Anti-inflammatory", "Anxiety Relief"],
+    'caryophyllene': {
+        id: 3,
+        'aroma': 'Peppery, Spicy, Wood',
+        'effects': ['Anti-inflammatory', 'Anxiety Relief'],
     },
-    {
-      id: 4,
-      name: "Linalool",
-      aroma: "Floral, Lavender",
-      effects: ["Calming", "Sleep Aid"],
+    'linalool': {
+        id: 4,
+        'aroma': 'Floral, Lavender',
+        'effects': ['Calming', 'Sleep Aid'],
     },
-    {
-      id: 5,
-      name: "Pinene",
-      aroma: "Pine, Sharp, Sweet",
-      effects: ["Alertness", "Memory Retention"],
-    }
-  ]
+    'pinene': {
+        id: 5,
+        'aroma': 'Pine, Sharp, Sweet',
+        'effects': ['Alertness', 'Memory Retention'],
+    },
 }
 
 app.get('/', (request, response) => {
     response.sendFile(__dirname + '/index.html')
 })
 
-app.get('/api', (request, response) => {
+app.get('/api/:name', (request, response) => {
+    const terpName = request.params.name.toLowerCase()
     response.json(terpeneData)
 })
 
