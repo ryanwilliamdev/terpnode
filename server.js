@@ -3,6 +3,11 @@ const app = express()
 const PORT = 8000
 
 const terpeneData = {
+    'unknown': {
+    id: 0,
+    'aroma': 'unknown',
+    'effects': 'unknown',
+    },
     'myrcene': {
         id: 1,
         'aroma': 'Earthy, Musky, Cloves',
@@ -35,8 +40,12 @@ app.get('/', (request, response) => {
 })
 
 app.get('/api/:name', (request, response) => {
-    const terpName = request.params.name.toLowerCase()
-    response.json(terpeneData)
+    const terpeneName = request.params.name.toLowerCase()
+    if (terpeneData[terpeneName]) {
+        response.json(terpeneData[terpeneName])
+    } else {
+        response.json(terpeneData['unknown'])
+    }
 })
 
 app.listen(PORT, () => {
