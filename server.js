@@ -1,12 +1,12 @@
 const express = require('express')
 const app = express()
-const PORT = 8000
+const PORT = 6666
 
 const terpeneData = {
     'unknown': {
-    id: 0,
-    'aroma': 'unknown',
-    'effects': 'unknown',
+        id: 0,
+        'aroma': 'unknown',
+        'effects': 'unknown',
     },
     'myrcene': {
         id: 1,
