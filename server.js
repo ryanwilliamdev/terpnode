@@ -22,7 +22,7 @@ app.engine(
     'hbs',
     engine({
         extname: 'hbs',
-        defaultLayout: false,
+        defaultLayout: 'main',
         layoutsDir: './views/layouts',
     })
 )
@@ -30,6 +30,7 @@ app.set('view engine', 'hbs')
 
 // Routes
 app.use('/', require('./routes/index'))
+
 
 app.listen(
     PORT,
