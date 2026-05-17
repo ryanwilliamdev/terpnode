@@ -67,7 +67,13 @@ export const updateStrainNote = async (req, res) => { // UPDATE
     }
 };
 
-
 export const deleteStrain = async (req, res) => { // DELETE
-    await res.status(200).json({ message: 'Strain deleted successfully!' });
+    try {
+        const { id } = req.params;
+        await Strain.findByIdAndDelete(id);
+        res.status(200).json({ message: 'Strain deleted successfully!' });
+    } catch (error) {
+        console.error('Error deleting strain from deleteStrain controller:', error);
+        res.status(500).json({ message: error.message });
+    }
 };
