@@ -44,7 +44,15 @@ export const addStrainNote = async (req, res) => { // CREATE
 };
 
 export const updateStrain = async (req, res) => { // UPDATE
-    await res.status(200).json({ message: 'Strain updated successfully!' });
+    try {
+        const { id } = req.params;
+        const { name, type, cultivator, terpenes, flavor } = req.body;
+        const strain = await Strain.findByIdAndUpdate(id, { name, type, cultivator, terpenes, flavor }, { new: true });
+        res.status(200).json(strain);
+    } catch (error) {
+        console.error('Error updating strain from updateStrain controller:', error);
+        res.status(500).json({ message: error.message });
+    }
 };
 
 
