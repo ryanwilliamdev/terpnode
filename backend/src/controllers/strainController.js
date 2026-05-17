@@ -55,6 +55,18 @@ export const updateStrain = async (req, res) => { // UPDATE
     }
 };
 
+export const updateStrainNote = async (req, res) => { // UPDATE
+    try {
+        const { id } = req.params;
+        const { note } = req.body;
+        const strainNote = await StrainNote.findByIdAndUpdate(id, { note }, { new: true });
+        res.status(200).json(strainNote);
+    } catch (error) {
+        console.error('Error updating strain note from updateStrainNote controller:', error);
+        res.status(500).json({ message: error.message });
+    }
+};
+
 
 export const deleteStrain = async (req, res) => { // DELETE
     await res.status(200).json({ message: 'Strain deleted successfully!' });
