@@ -77,3 +77,14 @@ export const deleteStrain = async (req, res) => { // DELETE
         res.status(500).json({ message: error.message });
     }
 };
+
+export const deleteStrainNote = async (req, res) => { // DELETE
+    try {
+        const { id } = req.params;
+        await StrainNote.findByIdAndDelete(id);
+        res.status(200).json({ message: 'Strain note deleted successfully!' });
+    } catch (error) {
+        console.error('Error deleting strain note from deleteStrainNote controller:', error);
+        res.status(500).json({ message: error.message });
+    }
+};
