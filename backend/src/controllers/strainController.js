@@ -1,9 +1,9 @@
 import { Strain, StrainNote } from '../models/Strain.js'; // GET ALL STRAINS
 
 
-export const getAllStrains = async (req, res) => { // READ
+export const getAllStrains = async (_, res) => { // READ
     try {
-        const strains = await Strain.find();
+        const strains = await Strain.find().sort({ createdAt: -1 });
         res.status(200).json(strains);
     } catch (error) {
         console.error('Error fetching strains from getAllStrains controller:', error);
@@ -11,6 +11,19 @@ export const getAllStrains = async (req, res) => { // READ
     }
 };
 
+export const getStrainById = async (req, res) => { // READ
+    try {
+        const { id } = req.params;
+        const strain = await Strain.findById(id);
+        if (!strain) {
+            return res.status(404).json({ message: 'Strain not found!' });
+        }
+        res.status(200).json(strain);
+    } catch (error) {
+        console.error('Error fetching strain by id from getStrainById controller:', error);
+        res.status(500).json({ message: error.message });
+    }
+};
 export const getAllStrainNotes = async (req, res) => { // READ
     try {
         const strainNotes = await StrainNote.find();
