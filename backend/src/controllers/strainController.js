@@ -11,6 +11,15 @@ export const getAllStrains = async (req, res) => { // READ
     }
 };
 
+export const getAllStrainNotes = async (req, res) => { // READ
+    try {
+        const strainNotes = await StrainNote.find();
+        res.status(200).json(strainNotes);
+    } catch (error) {
+        console.error('Error fetching strain notes from getAllStrainNotes controller:', error);
+        res.status(500).json({ message: error.message });
+    }
+};
 
 export const addStrain = async (req, res) => { // CREATE
     try {
@@ -23,9 +32,21 @@ export const addStrain = async (req, res) => { // CREATE
     }
 };
 
+export const addStrainNote = async (req, res) => { // CREATE
+    try {
+        const { strain, note } = req.body;
+        const strainNote = await StrainNote.create({ strain, note });
+        res.status(201).json(strainNote);
+    } catch (error) {
+        console.error('Error adding strain note from addStrainNote controller:', error);
+        res.status(500).json({ message: error.message });
+    }
+};
+
 export const updateStrain = async (req, res) => { // UPDATE
     await res.status(200).json({ message: 'Strain updated successfully!' });
 };
+
 
 export const deleteStrain = async (req, res) => { // DELETE
     await res.status(200).json({ message: 'Strain deleted successfully!' });
