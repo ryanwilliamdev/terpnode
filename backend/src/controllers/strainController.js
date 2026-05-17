@@ -1,4 +1,4 @@
-import { Strain } from '../models/Strain.js'; // GET ALL STRAINS
+import { Strain, StrainNote } from '../models/Strain.js'; // GET ALL STRAINS
 
 
 export const getAllStrains = async (req, res) => { // READ
