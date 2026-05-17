@@ -90,9 +90,6 @@ export const deleteStrain = async (req, res) => { // DELETE
     try {
         const { id } = req.params;
         await Strain.findByIdAndDelete(id);
-        if (!strain) {
-            return res.status(404).json({ message: 'Strain not found!' });
-        }
         res.status(200).json({ message: 'Strain deleted successfully!' });
     } catch (error) {
         console.error('Error deleting strain from deleteStrain controller:', error);
@@ -104,9 +101,6 @@ export const deleteStrainNote = async (req, res) => { // DELETE
     try {
         const { id } = req.params;
         await StrainNote.findByIdAndDelete(id);
-        if (!strainNote) {
-            return res.status(404).json({ message: 'Strain note not found!' });
-        }
         res.status(200).json({ message: 'Strain note deleted successfully!' });
     } catch (error) {
         console.error('Error deleting strain note from deleteStrainNote controller:', error);
