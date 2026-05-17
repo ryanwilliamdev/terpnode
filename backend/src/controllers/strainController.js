@@ -48,6 +48,9 @@ export const updateStrain = async (req, res) => { // UPDATE
         const { id } = req.params;
         const { name, type, cultivator, terpenes, flavor } = req.body;
         const strain = await Strain.findByIdAndUpdate(id, { name, type, cultivator, terpenes, flavor }, { new: true });
+        if (!strain) {
+            return res.status(404).json({ message: 'Strain not found!' });
+        }
         res.status(200).json(strain);
     } catch (error) {
         console.error('Error updating strain from updateStrain controller:', error);
@@ -60,6 +63,9 @@ export const updateStrainNote = async (req, res) => { // UPDATE
         const { id } = req.params;
         const { note } = req.body;
         const strainNote = await StrainNote.findByIdAndUpdate(id, { note }, { new: true });
+        if (!strainNote) {
+            return res.status(404).json({ message: 'Strain note not found!' });
+        }
         res.status(200).json(strainNote);
     } catch (error) {
         console.error('Error updating strain note from updateStrainNote controller:', error);
@@ -71,6 +77,9 @@ export const deleteStrain = async (req, res) => { // DELETE
     try {
         const { id } = req.params;
         await Strain.findByIdAndDelete(id);
+        if (!strain) {
+            return res.status(404).json({ message: 'Strain not found!' });
+        }
         res.status(200).json({ message: 'Strain deleted successfully!' });
     } catch (error) {
         console.error('Error deleting strain from deleteStrain controller:', error);
@@ -82,6 +91,9 @@ export const deleteStrainNote = async (req, res) => { // DELETE
     try {
         const { id } = req.params;
         await StrainNote.findByIdAndDelete(id);
+        if (!strainNote) {
+            return res.status(404).json({ message: 'Strain note not found!' });
+        }
         res.status(200).json({ message: 'Strain note deleted successfully!' });
     } catch (error) {
         console.error('Error deleting strain note from deleteStrainNote controller:', error);
