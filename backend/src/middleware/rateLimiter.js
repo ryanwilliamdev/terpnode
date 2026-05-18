@@ -9,7 +9,7 @@ const rateLimiter = async (req, res, next) => {
         next();
     } catch (error) {
         console.error('Error in rateLimiter middleware:', error);
-        return res.status(429).json({ message: 'Too many requests' });
+        next(error);
     }
 };
 
