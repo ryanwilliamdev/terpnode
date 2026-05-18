@@ -10,7 +10,6 @@ const PORT = process.env.PORT || 3000
 
 app.use('/api/strains', strainRoutes);
 
-connectDB();
 
 // MIDDLEWARE
 app.use(express.json());
@@ -29,6 +28,9 @@ app.use((err, req, res, next) => {
     console.error('Error:', err);
     res.status(500).json({ message: 'Internal server error' });
 });
-app.listen(PORT, () => {
-    console.log('Server started on PORT:', PORT);
+
+connectDB().then(() => {
+    app.listen(PORT, () => {
+        console.log('Server started on PORT:', PORT);
+    });
 });
