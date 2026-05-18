@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 // create a rate limit instance with a sliding window of 20 seconds and a limit of 10 requests
-const rateLimit = new RateLimit({
+const ratelimit = new Ratelimit({
     redis: Redis.fromEnv(),
     limiter: Redis.slidingWindow({
         interval: 20, // 20 seconds
@@ -14,4 +14,4 @@ const rateLimit = new RateLimit({
     }),
 });
 
-export default rateLimit;
+export default ratelimit;
