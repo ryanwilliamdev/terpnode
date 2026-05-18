@@ -15,6 +15,7 @@ connectDB();
 // MIDDLEWARE
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(rateLimiter);
 app.use((req, res, next) => {
     console.log(`The request method is ${req.method} and the request URL is ${req.url}`);
     next();
