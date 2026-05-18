@@ -1,7 +1,9 @@
 import React from 'react'
 
-export const StrainDetailPage = () => {
+const StrainDetailPage = () => {
     return (
         <div>StrainDetailPage</div>
     )
 }
+
+export default StrainDetailPage
