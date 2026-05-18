@@ -1,6 +1,7 @@
 import express from 'express';
 import strainRoutes from './routes/strainRoutes.js';
 import { connectDB } from './config/db.js';
+import rateLimiter from './middleware/rateLimiter.js';
 import dotenv from 'dotenv'
 
 dotenv.config();
