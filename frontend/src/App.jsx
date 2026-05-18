@@ -13,7 +13,7 @@ const App = () => {
         <Route path="/strain/:id" element={<StrainDetailPage />} />
       </Routes>
     </div >
-  )
-}
+  );
+};
 
-export default App
+export default App;
